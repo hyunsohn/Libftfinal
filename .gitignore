@@ -1,0 +1,4 @@
+/Debug/
+*.o
+libft.a
+libft.so
