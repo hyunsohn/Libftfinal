@@ -32,7 +32,7 @@ static unsigned int	ft_get_nb_strs(char const *s, char c)
 	unsigned int	i;
 	unsigned int	nb_strs;
 
-	if (!s[0])
+	if (!s || (s && !s[0]))
 		return (0);
 	i = 0;
 	nb_strs = 0;
@@ -77,12 +77,11 @@ char	**ft_split(char const *s, char c)
 	char			**tab;
 	char			*next_str;
 	unsigned int	next_str_len;
-	unsigned int	nb_strs;
 	unsigned int	i;
 
 	if (!s)
 		return (NULL);
-	tab = (char **)malloc(ft_get_nb_strs(s, c) + 1);
+	tab = (char **)malloc(sizeof(char *) * (ft_get_nb_strs(s, c) + 1));
 	if (!tab)
 		return (NULL);
 	i = 0;
@@ -91,7 +90,7 @@ char	**ft_split(char const *s, char c)
 	while (i < ft_get_nb_strs(s, c))
 	{
 		ft_get_next_str(&next_str, &next_str_len, c);
-		tab[i] = (char *)malloc(sizeof(char) * (next_str_len + 1));
+		tab[i] = (char *)malloc(sizeof(char *) * (next_str_len + 1));
 		if (!tab[i])
 			return (ft_malloc_error(tab));
 		ft_strlcpy(tab[i], next_str, next_str_len + 1);

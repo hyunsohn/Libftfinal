@@ -16,14 +16,16 @@
 void	*ft_calloc(size_t num, size_t size)
 {
 	char	*mem;
-	size_t	i;
+	int		memsize;
 
-	i = 0;
-	mem = (char *)malloc(num * size);
-	if (mem == NULL)
-	{
+	if (2147483647 / num < size)
 		return (NULL);
-	}
-	ft_bzero(mem, num * size);
+	memsize = num * size;
+	if (memsize == 0 || (size_t) memsize != num * size)
+		return (NULL);
+	mem = (char *)malloc(memsize);
+	if (mem == NULL)
+		return (NULL);
+	ft_bzero(mem, memsize);
 	return (mem);
 }

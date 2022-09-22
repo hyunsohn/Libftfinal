@@ -45,7 +45,7 @@ int	ft_atoi(const char *str)
 		ret = ret + (str[i] - '0');
 		i++;
 	}
-	if (ret == 2147483648 && sign == 1 || ret > 2147483648)
+	if ((ret == 2147483648 && sign == 1) || ret > 2147483648)
 	{
 		return (sign);
 	}

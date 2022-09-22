@@ -13,7 +13,7 @@
 
 void	*ft_memmove(void *str1, const void *str2, size_t n)
 {
-	int					i;
+	size_t				i;
 	unsigned char		*charstr1;
 	const unsigned char	*charstr2;
 

@@ -17,8 +17,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	size_t	strlen_s;
 	size_t	strlen_d;
 
-	if (size == 0)
-		return (0);
 	strlen_s = ft_strlen(src);
 	strlen_d = ft_strlen(dst);
 	if (strlen_d >= size)
@@ -31,7 +29,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	}
 	else
 	{
-		ft_memcpy(dst + strlen_d, src, size);
+		ft_memcpy(dst + strlen_d, src, size - strlen_d - 1);
 		dst[size - 1] = 0;
 	}
 	return (strlen_d + strlen_s);

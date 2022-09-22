@@ -47,14 +47,12 @@ static int	ft_findend(char const *s1, char const *set)
 {
 	int		removed;
 	int		end;
-	size_t	i;
 
 	removed = 1;
 	end = ft_strlen(s1) - 1;
 	while (removed && s1[end] != 0)
 	{
 		removed = 0;
-		i = 0;
 		if (ft_isin(s1[end], set))
 		{
 			end = end - 1;
@@ -66,7 +64,6 @@ static int	ft_findend(char const *s1, char const *set)
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	i;
 	int		start;
 	int		end;
 	size_t	len;
