@@ -11,72 +11,54 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
+/*
+** Allocates with malloc(), and returns a copy of the string given as argument
+** without whitespaces at the beginning or at the end of the string.
+** Will be considered as whitespaces the following characters ’ ’, ’\n’,
+** and ’\t’. If s has no whites- paces at the beginning or at the end,
+** the function returns a copy of s.
+** If the allocation fails the function returns NULL.
+*/
 
-static int	ft_isin(char c, char const *set)
+static int
+	ft_char_in_set(char s1, char const *set)
 {
-	while (*set != '\0')
+	size_t	i;
+
+	i = 0;
+	while (set[i])
 	{
-		if (c == *set)
+		if (set[i] == s1)
 			return (1);
-		set++;
+		i++;
 	}
 	return (0);
 }
 
-static int	ft_findstart(char const *s1, char const *set)
+char
+	*ft_strtrim(char const *s2, char const *set)
 {
-	int		removed;
+	char	*str;
+	size_t	i;
 	size_t	start;
+	size_t	end;
 
-	removed = 1;
 	start = 0;
-	while (removed && s1[start] != 0)
-	{
-		removed = 0;
-		if (ft_isin(s1[start], set))
-		{
-			start = start + 1;
-			removed = 1;
-		}
-	}
-	return (start);
-}
-
-static int	ft_findend(char const *s1, char const *set)
-{
-	int		removed;
-	int		end;
-
-	removed = 1;
-	end = ft_strlen(s1) - 1;
-	while (removed && s1[end] != 0)
-	{
-		removed = 0;
-		if (ft_isin(s1[end], set))
-		{
-			end = end - 1;
-			removed = 1;
-		}
-	}
-	return (end);
-}
-
-char	*ft_strtrim(char const *s1, char const *set)
-{
-	int		start;
-	int		end;
-	size_t	len;
-	char	*ret;
-
-	if (!s1)
+	if (!s2)
 		return (NULL);
-	start = ft_findstart(s1, set);
-	end = ft_findend(s1, set);
-	if (end < start)
-		len = 0;
-	else
-		len = end - start + 1;
-	ret = ft_substr(s1, start, len);
-	return (ret);
+	if (!set)
+		return (NULL);
+	while (s2[start] && ft_char_in_set(s2[start], set))
+		start++;
+	end = ft_strlen(s2);
+	while (end > start && ft_char_in_set(s2[end - 1], set))
+		end--;
+	str = (char *)malloc(sizeof(*s2) * (end - start + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (start < end)
+		str[i++] = s2[start++];
+	str[i] = 0;
+	return (str);
 }

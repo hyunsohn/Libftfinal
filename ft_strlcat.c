@@ -11,26 +11,31 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+/*
+** Appends the NULL-terminated string src to the end of dst.
+** It will append at most size - strlen(dst) - 1 bytes, NULL-terminating
+** the result.
+*/
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	strlen_s;
-	size_t	strlen_d;
+	size_t	i;
+	size_t	j;
 
-	strlen_s = ft_strlen(src);
-	strlen_d = ft_strlen(dst);
-	if (strlen_d >= size)
+	if (size == 0)
+		return (ft_strlen(src));
+	i = 0;
+	while (i < size && dst[i] != '\0')
+		++i;
+	j = 0;
+	while (src[j] != '\0' && i + j < size - 1)
 	{
-		return (size + strlen_s);
+		dst[i + j] = src[j];
+		j++;
 	}
-	if (strlen_s + strlen_d < size)
-	{
-		ft_memcpy(dst + strlen_d, src, strlen_s + 1);
-	}
-	else
-	{
-		ft_memcpy(dst + strlen_d, src, size - strlen_d - 1);
-		dst[size - 1] = 0;
-	}
-	return (strlen_d + strlen_s);
+	if (i + j < size)
+		dst[i + j] = '\0';
+	while (src[j] != '\0')
+		j++;
+	return (i + j);
 }

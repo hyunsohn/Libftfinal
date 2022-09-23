@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsohn <hsohn@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: hsohn <hsohn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:29:03 by hsohn             #+#    #+#             */
-/*   Updated: 2022/05/04 12:29:03 by hsohn            ###   ########.fr       */
+/*   Updated: 2022/09/23 13:00:22 by hsohn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <unistd.h>
+# include <stdlib.h>
 # include <stddef.h>
 
 int		ft_isalpha(int c);

@@ -10,28 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
+/*
+** Copies len bytes from string src to string dst.
+** The two strings may overlap; the copy is always done in a non-destructive
+** manner.
+*/
 
 void	*ft_memmove(void *str1, const void *str2, size_t n)
 {
-	size_t				i;
-	unsigned char		*charstr1;
-	const unsigned char	*charstr2;
+	size_t	i;
+	char	*buf_dst;
 
-	if (str2 > str1)
+	i = 0;
+	buf_dst = ((char *)str1);
+	if (str1 == str2)
+		return (str1);
+	else if (str1 < str2)
 	{
-		return (ft_memcpy(str1, str2, n));
+		while (i < n)
+		{
+			((char *)buf_dst)[i] = ((char *)str2)[i];
+			i++;
+		}
 	}
-	i = 1;
-	charstr1 = (unsigned char *)str1;
-	charstr2 = (const unsigned char *)str2;
-	if (charstr1 == 0 || charstr2 == 0)
+	else
 	{
-		return (0);
+	i = n;
+		while (i > 0)
+		{
+			i--;
+			((char *)buf_dst)[i] = ((char *)str2)[i];
+		}
 	}
-	while (i <= n)
-	{
-		charstr1[n - i] = charstr2[n - i];
-		i++;
-	}
-	return (str1);
+	return (buf_dst);
 }

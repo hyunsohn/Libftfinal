@@ -3,38 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsohn <hsohn@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: hsohn <hsohn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 17:31:29 by hsohn             #+#    #+#             */
-/*   Updated: 2022/04/02 17:31:29 by hsohn            ###   ########.fr       */
+/*   Updated: 2022/09/23 13:06:32 by hsohn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+/*
+** Takes the destination's size as a parameter and will not write more than
+** that many bytes, to prevent buffer overflow (assuming size is correct).
+** Writes a single NULL byte to the destination (if size is not zero).
+** The resulting string is guaranteed to be NULL-terminated even if truncated.
+** Returns the length of the entire source string.
+*/
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	size_t				i;
+	size_t	i;
 
 	i = 0;
-	if (dest == NULL || size == 0)
+	if (size > 0)
 	{
-		return (ft_strlen(src));
-	}
-	if (src == NULL)
-	{
-		dest[0] = 0;
-		return (ft_strlen(src));
-	}
-	while (i + 1 < size)
-	{
-		dest[i] = src[i];
-		if (src[i] == 0)
+		while (src[i] && i < size -1)
 		{
-			return (i);
+			dest[i] = src [i];
+			i ++;
 		}
-		i = i + 1;
+		dest[i] = 0;
 	}
-	dest[i] = 0;
-	return (ft_strlen(src));
+	i = 0;
+	while (src[i])
+		i++;
+	return (i);
 }
